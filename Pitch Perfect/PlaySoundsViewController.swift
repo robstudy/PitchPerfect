@@ -35,15 +35,11 @@ class PlaySoundsViewController: UIViewController {
     //MARK: - Actions
     
     @IBAction func slowPlayBack(sender:UIButton){
-        audioPlayer.stop()
-        audioPlayer.rate=0.5
-        audioPlayer.play()
+        slowAndFast(0.5)
     }
     
     @IBAction func fastPlayBack(sender:UIButton){
-        audioPlayer.stop()
-        audioPlayer.rate=1.5
-        audioPlayer.play()
+        slowAndFast(1.5)
     }
     
     @IBAction func stopAudio(sender:UIButton){
@@ -58,7 +54,15 @@ class PlaySoundsViewController: UIViewController {
         playAudioWithVariablePitch(-1000)
     }
     
-    //MARK: - Helper Function
+    //MARK: - Helper Functions
+    
+    func slowAndFast(rate: Float){
+        audioEngine.stop()
+        audioEngine.reset()
+        audioPlayer.stop()
+        audioPlayer.rate = rate
+        audioPlayer.play()
+    }
     
     func playAudioWithVariablePitch(pitch: Float){
         audioPlayer.stop()
