@@ -34,7 +34,7 @@
                                     <constraint firstAttribute="width" constant="55" id="AIA-Tw-7pI"/>
                                     <constraint firstAttribute="height" constant="50" id="iKT-PE-ePf"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="stop"/>
+                                <state key="normal" image="stop"/>
                                 <connections>
                                     <action selector="stopRecord:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hjr-d2-rzM"/>
                                 </connections>
@@ -55,7 +55,7 @@
                                 </variation>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.082352943720000002" green="0.47058826679999999" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="ZVT-Te-Dbj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0lv-PS-25Y"/>
                             <constraint firstItem="Yle-ES-bAN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hem-Hy-Yes"/>
@@ -77,6 +77,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="recordButton" destination="HeL-H3-CzP" id="MK3-4F-oia"/>
+                        <outlet property="recordLabel" destination="ZVT-Te-Dbj" id="Csm-ZA-A5t"/>
                         <outlet property="recordingInProgress" destination="ZVT-Te-Dbj" id="3mF-je-zci"/>
                         <outlet property="stopButton" destination="Yle-ES-bAN" id="uPL-PC-ys6"/>
                         <segue destination="T16-yd-pWt" kind="show" identifier="stopRecording" id="JSt-Y2-dOq"/>
@@ -101,8 +102,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r74-LD-obl">
                                 <rect key="frame" x="181" y="501" width="52" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="52" id="i4R-zs-S8Q"/>
-                                    <constraint firstAttribute="height" constant="50" id="msl-ix-KY7"/>
+                                    <constraint firstAttribute="width" constant="52" id="UQ9-0e-yu2"/>
                                 </constraints>
                                 <state key="normal" image="stop"/>
                                 <connections>
@@ -112,10 +112,10 @@
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4F-bS-rX3">
                                 <rect key="frame" x="45" y="136" width="105" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="0UA-5R-GjA"/>
-                                    <constraint firstAttribute="width" constant="105" id="ocH-Z3-PAB"/>
+                                    <constraint firstAttribute="width" constant="105" id="9tZ-BD-Xv9"/>
+                                    <constraint firstAttribute="height" constant="100" id="tzU-2e-J4Q"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="slug"/>
+                                <state key="normal" image="slug"/>
                                 <connections>
                                     <action selector="slowPlayBack:" destination="T16-yd-pWt" eventType="touchUpInside" id="f5P-na-5zt"/>
                                 </connections>
@@ -123,20 +123,27 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yq2-1Z-wUI">
                                 <rect key="frame" x="264" y="136" width="105" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="7i5-Nb-yyV"/>
-                                    <constraint firstAttribute="width" constant="105" id="Yq1-S1-8Mj"/>
+                                    <constraint firstAttribute="width" constant="105" id="4Pf-6B-r9g"/>
+                                    <constraint firstAttribute="height" constant="100" id="jwP-mc-Qsx"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="fast"/>
+                                <state key="normal" image="fast"/>
                                 <connections>
                                     <action selector="fastPlayBack:" destination="T16-yd-pWt" eventType="touchUpInside" id="3GT-Q7-3sI"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOl-Bf-DGH">
+                                <rect key="frame" x="264" y="297" width="105" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="105" id="7oP-2P-R3u"/>
+                                    <constraint firstAttribute="height" constant="100" id="X6U-Nj-bY8"/>
+                                </constraints>
+                                <state key="normal" image="darthVader"/>
+                                <connections>
+                                    <action selector="playDarthVaderAudio:" destination="T16-yd-pWt" eventType="touchUpInside" id="RUY-P0-eiO"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlr-Zv-xBu">
                                 <rect key="frame" x="45" y="297" width="105" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="dws-YG-di0"/>
-                                    <constraint firstAttribute="width" constant="105" id="qFU-ez-BOV"/>
-                                </constraints>
                                 <state key="normal" image="chipmonk"/>
                                 <connections>
                                     <action selector="playChipmonkAudio:" destination="T16-yd-pWt" eventType="touchUpInside" id="e15-jT-Npf"/>
@@ -145,25 +152,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Q0A-LS-kdK" firstAttribute="top" secondItem="r74-LD-obl" secondAttribute="bottom" constant="185" id="4PV-xA-Bnt"/>
-                            <constraint firstItem="yq2-1Z-wUI" firstAttribute="leading" secondItem="i4F-bS-rX3" secondAttribute="trailing" constant="127" id="7fU-ZG-0Y8"/>
-                            <constraint firstItem="i4F-bS-rX3" firstAttribute="leading" secondItem="SzU-W6-tUV" secondAttribute="leadingMargin" constant="25" id="CgM-T3-omp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yq2-1Z-wUI" secondAttribute="trailing" constant="25" id="Pdi-sq-dlB"/>
-                            <constraint firstItem="jlr-Zv-xBu" firstAttribute="top" secondItem="i4F-bS-rX3" secondAttribute="bottom" constant="61" id="RZG-Hg-nXL"/>
-                            <constraint firstItem="r74-LD-obl" firstAttribute="centerX" secondItem="SzU-W6-tUV" secondAttribute="centerX" id="VrJ-Bh-2r0"/>
-                            <constraint firstItem="i4F-bS-rX3" firstAttribute="top" secondItem="nd7-jg-qJk" secondAttribute="bottom" constant="72" id="XDV-Mm-O9s"/>
-                            <constraint firstItem="yq2-1Z-wUI" firstAttribute="top" secondItem="nd7-jg-qJk" secondAttribute="bottom" constant="72" id="aek-2K-GJn"/>
-                            <constraint firstItem="jlr-Zv-xBu" firstAttribute="leading" secondItem="SzU-W6-tUV" secondAttribute="leadingMargin" constant="25" id="cLP-iP-tvo"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yq2-1Z-wUI" secondAttribute="trailing" constant="17" id="idi-8Z-YSC"/>
-                            <constraint firstItem="i4F-bS-rX3" firstAttribute="leading" secondItem="SzU-W6-tUV" secondAttribute="leadingMargin" constant="23" id="pVa-I7-UCZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eOl-Bf-DGH" secondAttribute="trailing" constant="25" id="3zk-hb-y31"/>
+                            <constraint firstItem="Q0A-LS-kdK" firstAttribute="top" secondItem="r74-LD-obl" secondAttribute="bottom" constant="185" id="5U2-UQ-fjp"/>
+                            <constraint firstItem="i4F-bS-rX3" firstAttribute="width" secondItem="jlr-Zv-xBu" secondAttribute="width" id="Au4-RE-vzH"/>
+                            <constraint firstItem="r74-LD-obl" firstAttribute="centerX" secondItem="SzU-W6-tUV" secondAttribute="centerX" id="FHa-zo-YEC"/>
+                            <constraint firstItem="eOl-Bf-DGH" firstAttribute="top" secondItem="yq2-1Z-wUI" secondAttribute="bottom" constant="61" id="Fd7-IV-ryV"/>
+                            <constraint firstItem="i4F-bS-rX3" firstAttribute="top" secondItem="nd7-jg-qJk" secondAttribute="bottom" constant="72" id="NPM-pw-XJh"/>
+                            <constraint firstItem="jlr-Zv-xBu" firstAttribute="leading" secondItem="SzU-W6-tUV" secondAttribute="leadingMargin" constant="25" id="Uo4-tK-X2f"/>
+                            <constraint firstItem="i4F-bS-rX3" firstAttribute="centerX" secondItem="jlr-Zv-xBu" secondAttribute="centerX" id="YOV-I9-sJb"/>
+                            <constraint firstItem="jlr-Zv-xBu" firstAttribute="top" secondItem="i4F-bS-rX3" secondAttribute="bottom" constant="61" id="bEx-RD-3LD"/>
+                            <constraint firstItem="yq2-1Z-wUI" firstAttribute="top" secondItem="nd7-jg-qJk" secondAttribute="bottom" constant="72" id="c2w-hZ-DQY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yq2-1Z-wUI" secondAttribute="trailing" constant="25" id="cMz-FM-T0G"/>
+                            <constraint firstItem="i4F-bS-rX3" firstAttribute="leading" secondItem="SzU-W6-tUV" secondAttribute="leadingMargin" constant="25" id="tz9-Lq-16I"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="pVa-I7-UCZ"/>
-                                <exclude reference="7fU-ZG-0Y8"/>
-                                <exclude reference="idi-8Z-YSC"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
@@ -193,6 +194,7 @@
     </scenes>
     <resources>
         <image name="chipmonk" width="100" height="100"/>
+        <image name="darthVader" width="100" height="100"/>
         <image name="fast" width="100" height="100"/>
         <image name="microphone" width="100" height="100"/>
         <image name="slug" width="100" height="100"/>
