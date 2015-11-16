@@ -10,9 +10,12 @@ import Foundation
 class PlaySoundsViewController: UIViewController {
 
     var audioPlayer:AVAudioPlayer!
+    var audioPlayer2:AVAudioPlayer!
     var recieveAudio:RecordedAudio!
     var audioEngine:AVAudioEngine!
     var audioFile:AVAudioFile!
+    
+    @IBOutlet weak var echoButton: UIButton!
     
     //MARK: - Override Functions
     
@@ -22,6 +25,18 @@ class PlaySoundsViewController: UIViewController {
         audioPlayer = try!AVAudioPlayer(contentsOfURL: recieveAudio.filePathUrl)
         audioPlayer.prepareToPlay()
         audioPlayer.enableRate=true
+        
+        /*
+        For echoAudio article on subject can be found
+        http://sandmemory.blogspot.com/2014/12/how-would-you-add-reverbecho-to-audio.html
+        */
+        audioPlayer2 = try!AVAudioPlayer(contentsOfURL: recieveAudio.filePathUrl)
+        audioPlayer2.prepareToPlay()
+        audioPlayer2.enableRate=true
+        
+        echoButton.layer.borderWidth = 2
+        echoButton.layer.cornerRadius = 10
+        echoButton.layer.borderColor = UIColor.blackColor().CGColor
         
         audioEngine = AVAudioEngine()
         audioFile = try!AVAudioFile(forReading: recieveAudio.filePathUrl)
@@ -34,6 +49,20 @@ class PlaySoundsViewController: UIViewController {
     
     //MARK: - Actions
     
+    @IBAction func echoAudio(sender: AnyObject) {
+        stop()
+        audioPlayer.play()
+        
+        let delayTime:NSTimeInterval = 0.08
+        var playTime:NSTimeInterval
+        playTime = audioPlayer2.deviceCurrentTime + delayTime
+        audioPlayer2.stop()
+        audioPlayer2.currentTime = 0
+        audioPlayer2.volume = 0.9
+        audioPlayer2.playAtTime(playTime)
+        print("echo")
+    }
+    
     @IBAction func slowPlayBack(sender:UIButton){
         slowAndFast(0.5)
     }
@@ -43,7 +72,7 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func stopAudio(sender:UIButton){
-        audioPlayer.stop()
+        stop()
     }
     
     @IBAction func playChipmonkAudio(sender: UIButton){
@@ -57,17 +86,22 @@ class PlaySoundsViewController: UIViewController {
     //MARK: - Helper Functions
     
     func slowAndFast(rate: Float){
-        audioEngine.stop()
-        audioEngine.reset()
-        audioPlayer.stop()
+        stop()
         audioPlayer.rate = rate
         audioPlayer.play()
     }
     
-    func playAudioWithVariablePitch(pitch: Float){
-        audioPlayer.stop()
+    func stop(){
         audioEngine.stop()
         audioEngine.reset()
+        audioPlayer.stop()
+        audioPlayer2.stop()
+        audioPlayer.currentTime = 0
+        audioPlayer2.currentTime = 0
+    }
+    
+    func playAudioWithVariablePitch(pitch: Float){
+        stop()
         
         let audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)

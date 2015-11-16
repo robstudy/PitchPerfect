@@ -5,14 +5,16 @@
 
 import UIKit
 import AVFoundation
+//import QuartzCore
+
 
 class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
-    @IBOutlet weak var recordingInProgress: UILabel!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var recordLabel: UILabel!
-    @IBOutlet weak var pressRecordLabel: UILabel!
+    @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var resumeButton: UIButton!
     
     var audioRecorder:AVAudioRecorder!
     var recordedAudio:RecordedAudio!
@@ -21,6 +23,15 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        resumeButton.layer.borderWidth = 2
+        resumeButton.layer.cornerRadius = 10
+        resumeButton.layer.borderColor = UIColor.whiteColor().CGColor
+        
+        pauseButton.layer.borderWidth = 2
+        pauseButton.layer.cornerRadius = 10
+        pauseButton.layer.borderColor = UIColor.whiteColor().CGColor
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,7 +41,13 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     override func viewWillAppear(animated: Bool) {
         recordButton.enabled = true
+        resumeButton.enabled = false
+        
         stopButton.hidden = true
+        pauseButton.hidden = true
+        resumeButton.hidden = true
+        
+        recordLabel.text = "Tap to Record"
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -44,7 +61,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     //MARK: - Actions
 
     @IBAction func recordAudio(sender: UIButton) {
-        //recordLabel.textColor = UIColor.whiteColor()
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         let recordingName = ("my_audio.wav")
         let pathArray = [dirPath, recordingName]
@@ -62,20 +78,34 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.record()
         
         recordButton.enabled = false
-        stopButton.hidden = false;
+        
+        stopButton.hidden = false
+        resumeButton.hidden = false
+        pauseButton.hidden = false
+        
+        recordLabel.text = "Recording..."
         print("in recordAudio")
-        recordingInProgress.hidden = false
-        pressRecordLabel.hidden = true
+    }
+    
+    @IBAction func pauseRecording(sender: AnyObject) {
+        recordLabel.text = "Paused"
+        audioRecorder.pause()
+        resumeButton.enabled = true
+    }
+    
+    
+    @IBAction func resumeRecording(sender: AnyObject) {
+        audioRecorder.record()
+        recordLabel.text = "Recording..."
+        resumeButton.enabled = false
     }
     
     @IBAction func stopRecord(sender: UIButton) {
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
-        
         try!audioSession.setActive(false)
+        
         print("stop recording")
-        recordingInProgress.hidden = true
-        pressRecordLabel.hidden = false
     }
     
     //Mark: - Helper Function
