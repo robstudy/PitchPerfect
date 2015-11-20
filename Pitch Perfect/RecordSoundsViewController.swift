@@ -5,8 +5,6 @@
 
 import UIKit
 import AVFoundation
-//import QuartzCore
-
 
 class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
